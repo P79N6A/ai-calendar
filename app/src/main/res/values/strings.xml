@@ -14,12 +14,16 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="board">Board</string>
-    <string name="ongoing">진행 중</string>
-    <string name="Finish">완료</string>
-    <string name="disable">불가</string>
     <string name="home">Home</string>
     <string name="close">Close</string>
     <string name="next">Next</string>
     <string name="title_s">슥</string>
     <string name="textview">TextView</string>
+    <string name="tab3_disable_text">Tab3 Disable text</string>
+    <string name="tab1_finish_text">tab1_finish_text</string>
+    <string name="event_date">Event Date</string>
+    <string name="image">image</string>
+    <string name="event_title">Event Title</string>
+    <string name="result">일정 등록이 불가합니다.</string>
+    <string name="date">date</string>
 </resources>
