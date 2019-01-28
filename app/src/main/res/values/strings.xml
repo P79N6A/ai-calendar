@@ -26,4 +26,17 @@
     <string name="event_title">Event Title</string>
     <string name="result">일정 등록이 불가합니다.</string>
     <string name="date">date</string>
+    <string name="user1_gmail_com">user1@gmail.com</string>
+    <string name="from">From</string>
+    <string name="thu_september_13_2018">Thu, September 13 2018</string>
+    <string name="to">To</string>
+    <string name="all_day">All-day</string>
+    <string name="timezone">Timezone</string>
+    <string name="pacific_standard_time">Pacific Standard Time</string>
+    <string name="todo">TODO</string>
+    <string name="save">Save</string>
+    <string name="page_title">Page Title</string>
+    <string name="event_name">Event Name</string>
+    <string name="시작">시작</string>
+    <string name="end_date">End date</string>
 </resources>

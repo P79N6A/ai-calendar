@@ -52,13 +52,20 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom"
         android:layout_below="@+id/bar"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true" >
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </FrameLayout>
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
+        android:layout_height="52dp"
         android:id="@+id/bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content">
+        android:layout_alignParentBottom="true">
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"

@@ -1,4 +1,4 @@
-package org.tikitaka.s_cheduler;
+package org.tikitaka.s_cheduler.Adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

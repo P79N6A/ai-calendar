@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import org.tikitaka.s_cheduler.ItemProcess;
 import org.tikitaka.s_cheduler.R;
-import org.tikitaka.s_cheduler.RecyclerViewAdapter2;
+import org.tikitaka.s_cheduler.Adapter.RecyclerViewAdapter2;
 
 import java.util.ArrayList;
 import java.util.List;
