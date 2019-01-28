@@ -1,24 +1,15 @@
 package org.tikitaka.s_cheduler.Fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.tikitaka.s_cheduler.ItemProcess;
 import org.tikitaka.s_cheduler.R;
-import org.tikitaka.s_cheduler.ViewPagerAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.tikitaka.s_cheduler.Adapter.ViewPagerAdapter;
 
 public class BoardFragment extends Fragment {
 
@@ -36,7 +27,7 @@ public class BoardFragment extends Fragment {
         viewPager = (ViewPager) v.findViewById(R.id.viewpager_id);
         adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-        adapter.AddFragment(new Tab1Ongoing(), "진행 중");
+        adapter.AddFragment(new Tab1Ongoing(), "진행");
         adapter.AddFragment(new Tab2Finish(), "완료");
         adapter.AddFragment(new Tab3Disable(), "불가");
         viewPager.setAdapter(adapter);

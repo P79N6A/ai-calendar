@@ -8,12 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.tikitaka.s_cheduler.ItemProcess;
 import org.tikitaka.s_cheduler.R;
-import org.tikitaka.s_cheduler.RecyclerViewAdapter;
-import org.tikitaka.s_cheduler.RecyclerViewAdapter2;
+import org.tikitaka.s_cheduler.Adapter.RecyclerViewAdapter2;
 
 import java.util.ArrayList;
 import java.util.List;
