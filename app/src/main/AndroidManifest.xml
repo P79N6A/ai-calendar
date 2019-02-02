@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.tikitaka.s_cheduler">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -9,6 +10,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        tools:replace="android:label"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="s_cheduler"
@@ -28,6 +30,9 @@
         </activity>
         <activity android:name=".StartActivity" />
         <activity android:name=".AddActivity" />
+        <activity android:name=".FinishActivity" />
+        <activity android:name=".AddNoteActivity" />
+        <activity android:name=".NotePreviewActivity" />
     </application>
 
 </manifest>

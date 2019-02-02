@@ -30,6 +30,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,7 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,8 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionCloudTextRecognizerOptions;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+
+import org.tikitaka.s_cheduler.Helper.FullScreenDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -73,10 +77,10 @@ public class AddActivity extends AppCompatActivity {
 
     private Button btnCapture;
     private Button btnGallery;
-    private Button btnNext;
     private TextureView textureView;
     Bitmap bitmap;
     private TextView textView;
+    private ImageButton btnClose, btnFlash;
 
 
     //check orientation of output image
@@ -144,7 +148,21 @@ public class AddActivity extends AppCompatActivity {
 
         btnGallery = (Button) findViewById(R.id.btnGallery);
 
-        btnNext = (Button) findViewById(R.id.btnNext);
+        btnClose= (ImageButton)findViewById(R.id.close);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnFlash= (ImageButton)findViewById(R.id.flash);
+        btnFlash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flash();
+            }
+        });
 
     }
 
@@ -243,7 +261,8 @@ public class AddActivity extends AppCompatActivity {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
-
+        //Intent intent = new Intent(AddActivity.this,FinishActivity.class);
+        //startActivity(intent);
     }
 
 
@@ -381,7 +400,7 @@ public class AddActivity extends AppCompatActivity {
 
 
 
-    //go to gallery
+    //go gallery
     public void pickImage(View v){
         Intent i=new Intent (Intent.ACTION_PICK,MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(i,1);
@@ -395,7 +414,7 @@ public class AddActivity extends AppCompatActivity {
             try{
                 bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(),uri);
                 detect();
-               // startActivity(new Intent(AddActivity.this,MainActivity.class));
+                //startActivity(new Intent(AddActivity.this,MainActivity.class));
             }catch(IOException e) {
                 e.printStackTrace();
             }
@@ -430,7 +449,6 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
-
     private void processText(FirebaseVisionText firebaseVisionText) {
         List<FirebaseVisionText.TextBlock> blocks=firebaseVisionText.getTextBlocks();
         if(blocks.size()==0){
@@ -442,5 +460,10 @@ public class AddActivity extends AppCompatActivity {
                 textView.setText(text);
             }
         }
+    }
+
+    private void flash() {
+        //public,private
+
     }
 }

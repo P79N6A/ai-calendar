@@ -17,6 +17,8 @@ import org.tikitaka.s_cheduler.Fragment.HomeFragment;
 import org.tikitaka.s_cheduler.Helper.FullScreenDialog;
 
 
+
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -83,3 +85,4 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
     }
+

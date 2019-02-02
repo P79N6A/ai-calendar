@@ -12,7 +12,7 @@
         android:background="?android:attr/windowBackground"
         android:id="@+id/bar">
 
-        <android.support.v7.widget.Toolbar
+       <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -45,6 +45,7 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
 
     <FrameLayout
         android:id="@+id/fragment_container"

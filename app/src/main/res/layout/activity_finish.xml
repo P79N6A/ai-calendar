@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddActivity">
+    tools:context=".FinishActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -34,16 +34,34 @@
                     android:contentDescription="@string/close" />
 
                 <ImageButton
-                    android:id="@+id/flash"
+                    android:id="@+id/rotate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="112dp"
+                    android:src="@drawable/ic_rotate" />
+
+                <ImageButton
+                    android:id="@+id/retouch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="62dp"
+                    android:src="@drawable/ic_retouch" />
+
+                <ImageButton
+                    android:id="@+id/crop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="14dp"
-                    android:src="@drawable/ic_flash"
-                    android:contentDescription="@string/next" />
-
+                    android:src="@drawable/ic_crop" />
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
@@ -56,11 +74,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextureView
-            android:id="@+id/textureView"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/linearLayout" />
+            android:layout_above="@+id/linearLayout"
+            android:gravity="center"
+            android:background="#F6F6F6"/>
 
         <RelativeLayout
             android:id="@+id/linearLayout"
@@ -73,20 +93,22 @@
             android:layout_marginTop="21dp">
 
             <Button
-                android:id="@+id/btnCapture"
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="70dp"
+                android:text="재촬영" />
+
+            <Button
+                android:id="@+id/btnFinish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
-                android:text="@string/capture" />
-
-            <Button
-                android:id="@+id/btnGallery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="pickImage"
-                android:layout_centerVertical="true"
-                android:text="@string/gallery" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="70dp"
+                android:text="확인" />
 
         </RelativeLayout>
 

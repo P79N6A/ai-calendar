@@ -14,7 +14,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> FirstFragment=new ArrayList<>();
     private final List<String> FirstTitle=new ArrayList<>();
 
-
     public ViewPagerAdapter(FragmentManager fm){
         super(fm);
     }
