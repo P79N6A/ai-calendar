@@ -1,4 +1,4 @@
-package org.tikitaka.s_cheduler;
+package org.tikitaka.s_cheduler.Contents;
 
 public class ItemProcess {
     private String Result;

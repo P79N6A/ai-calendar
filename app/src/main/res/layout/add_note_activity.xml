@@ -7,15 +7,16 @@
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/datePicker"
         android:layout_width="0dp"
-        android:layout_height="370dp"
+        android:layout_height="300dp"
         app:datePicker="true"
-        app:headerColor="@color/colorPrimary"
+        app:headerColor="#f6f6f6"
+        app:headerLabelColor="#202020"
+        app:todayLabelColor="#ff6ec7"
+        app:selectionColor="#f6f6f6"
+        app:selectionLabelColor="#202020"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:selectionColor="@color/colorAccent"
-        app:todayLabelColor="@color/colorPrimaryDark"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/addNoteButton"
@@ -30,8 +31,8 @@
 
     <EditText
         android:id="@+id/noteEditText"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_margin="8dp"
         android:background="@null"
         android:gravity="top"

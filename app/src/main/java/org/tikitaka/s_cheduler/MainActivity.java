@@ -3,6 +3,7 @@ package org.tikitaka.s_cheduler;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,14 +13,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.applandeo.materialcalendarview.CalendarView;
+import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+
 import org.tikitaka.s_cheduler.Fragment.BoardFragment;
 import org.tikitaka.s_cheduler.Fragment.HomeFragment;
 import org.tikitaka.s_cheduler.Helper.FullScreenDialog;
 
-
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String RESULT = "result";
+    public static final String EVENT = "event";
+    private static final int ADD_NOTE = 44;
+
+    private CalendarView mCalendarView;
+    private List<EventDay> mEventDays = new ArrayList<>();
 
     BottomNavigationView bottomNavigationView;
     Fragment selectedFragment = null;
@@ -29,22 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener(){
-
-        @Override
-        public void onClick(View v) {
-            DialogFragment dialog = FullScreenDialog.newInstance();
-            ((FullScreenDialog) dialog).setCallback(new FullScreenDialog.Callback() {
-                @Override
-                public void onActionClick(String name) {
-                    Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
-                }
-            });
-            dialog.show(getSupportFragmentManager(), "tag");
-        }
-
-        });
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -84,5 +83,8 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
-    }
+
+}
+
+
 

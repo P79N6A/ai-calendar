@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
@@ -22,6 +24,7 @@ import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import org.tikitaka.s_cheduler.AddActivity;
 import org.tikitaka.s_cheduler.AddNoteActivity;
+import org.tikitaka.s_cheduler.Helper.FullScreenDialog;
 import org.tikitaka.s_cheduler.MainActivity;
 import org.tikitaka.s_cheduler.MyEventDay;
 import org.tikitaka.s_cheduler.NotePreviewActivity;
@@ -53,18 +56,24 @@ public class HomeFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addNote();
+                DialogFragment dialog = FullScreenDialog.newInstance();
+                ((FullScreenDialog) dialog).setCallback(new FullScreenDialog.Callback() {
+                    @Override
+                    public void onActionClick(String name) {
+                        Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dialog.show(getFragmentManager(), "tag");
             }
         });
 
         Calendar calendar = Calendar.getInstance();
         mEventDays.add(new EventDay(calendar, R.drawable.sample_icon));
 
-
-       mCalendarView.setOnDayClickListener(new OnDayClickListener() {
+        mCalendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
-                previewNote(eventDay);
+                addNote();
             }
         });
 

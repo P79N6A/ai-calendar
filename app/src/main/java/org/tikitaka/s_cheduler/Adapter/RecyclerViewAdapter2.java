@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.tikitaka.s_cheduler.ItemProcess;
+import org.tikitaka.s_cheduler.Contents.ItemProcess;
 import org.tikitaka.s_cheduler.R;
 
 import java.util.List;

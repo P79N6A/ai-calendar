@@ -39,4 +39,27 @@
     <string name="event_name">Event Name</string>
     <string name="시작">시작</string>
     <string name="end_date">End date</string>
+
+    <string name="material_calendar_monday">월</string>
+    <string name="material_calendar_tuesday">화</string>
+    <string name="material_calendar_wednesday">수</string>
+    <string name="material_calendar_thursday">목</string>
+    <string name="material_calendar_friday">금</string>
+    <string name="material_calendar_saturday">토</string>
+    <string name="material_calendar_sunday">일</string>
+
+    <array name="material_calendar_months_array">
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+        <item>"4"</item>
+        <item>"5"</item>
+        <item>"6"</item>
+        <item>"7"</item>
+        <item>"8"</item>
+        <item>"9"</item>
+        <item>"10"</item>
+        <item>"11"</item>
+        <item>"12"</item>
+    </array>
 </resources>

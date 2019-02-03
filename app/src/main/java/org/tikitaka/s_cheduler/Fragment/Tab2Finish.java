@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.tikitaka.s_cheduler.ItemSuccess;
+import org.tikitaka.s_cheduler.Contents.ItemSuccess;
 import org.tikitaka.s_cheduler.R;
 import org.tikitaka.s_cheduler.Adapter.RecyclerViewAdapter;
 

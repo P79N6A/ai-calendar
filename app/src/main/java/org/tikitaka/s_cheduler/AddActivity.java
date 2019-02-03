@@ -414,7 +414,7 @@ public class AddActivity extends AppCompatActivity {
             try{
                 bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(),uri);
                 detect();
-                //startActivity(new Intent(AddActivity.this,MainActivity.class));
+                startActivity(new Intent(AddActivity.this,FinishActivity.class));
             }catch(IOException e) {
                 e.printStackTrace();
             }
@@ -442,8 +442,7 @@ public class AddActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    //Log.d("ERROR",e.getMessage());
-                    Toast.makeText(getApplicationContext(),"No text detected!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"처리실패!",Toast.LENGTH_LONG).show();
                 }
             });
         }
