@@ -41,6 +41,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,9 +102,13 @@ public class AddActivity extends AppCompatActivity {
     private File file;
     private static final int REQUEST_CAMERA_PERMISSION = 200;
     private boolean mFlashSupported;
+    private int mFlashState = 0;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
 
+    private static final int FLASH_STATE_OFF = 0;
+    private static final int FLASH_STATE_ON = 1;
+    private static final int FLASH_STATE_AUTO = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +146,7 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
-        btnFlash= (ImageButton)findViewById(R.id.flash);
+        btnFlash= (ImageButton)findViewById(R.id.flash_toggle);
         btnFlash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -300,7 +305,7 @@ public class AddActivity extends AppCompatActivity {
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(captureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
 
-            final File file = new File(Environment.getExternalStorageDirectory() + "/" +UUID.randomUUID().toString() + ".jpg");
+            file = new File(Environment.getExternalStorageDirectory() + "/" +UUID.randomUUID().toString() + ".jpg");
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
@@ -443,11 +448,11 @@ public class AddActivity extends AppCompatActivity {
 
             firebaseVisionTextRecognizer.processImage(firebaseVisionImage)
                     .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-                @Override
-                public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                    processText(firebaseVisionText);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                            processText(firebaseVisionText);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getApplicationContext(),"처리실패!",Toast.LENGTH_LONG).show();
@@ -469,8 +474,47 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
-    private void flash() {
-        //public,private
+    private void flash(){
+        if(mFlashState == FLASH_STATE_OFF){
+            mFlashState = FLASH_STATE_ON;
+        }
+        else if(mFlashState == FLASH_STATE_ON){
+            mFlashState = FLASH_STATE_AUTO;
+        }
+        else if(mFlashState == FLASH_STATE_AUTO){
+            mFlashState = FLASH_STATE_OFF;
+        }
+        setFlashIcon();
+    }
 
+    private void setFlashIcon(){
+        if(mFlashState == FLASH_STATE_OFF){
+            btnFlash.setImageResource(R.drawable.ic_flash_off);
+        }
+        else if(mFlashState == FLASH_STATE_ON){
+            btnFlash.setImageResource(R.drawable.ic_flash_on);
+        }
+        else if(mFlashState == FLASH_STATE_AUTO){
+            btnFlash.setImageResource(R.drawable.ic_flash_auto);
+        }
+        setAutoFlash(captureRequestBuilder);
+    }
+
+
+    private void setAutoFlash(CaptureRequest.Builder requestBuilder) {
+        if (mFlashSupported) {
+            if(mFlashState == FLASH_STATE_OFF){
+                requestBuilder.set(CaptureRequest.FLASH_MODE,
+                        CaptureRequest.FLASH_MODE_OFF);
+            }
+            else if(mFlashState == FLASH_STATE_ON){
+                requestBuilder.set(CaptureRequest.FLASH_MODE,
+                        CaptureRequest.FLASH_MODE_SINGLE);
+            }
+            else if(mFlashState == FLASH_STATE_AUTO){
+                requestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
+                        CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
+            }
+        }
     }
 }

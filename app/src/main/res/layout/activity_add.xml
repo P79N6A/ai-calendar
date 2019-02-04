@@ -34,15 +34,14 @@
                     android:contentDescription="@string/close" />
 
                 <ImageButton
-                    android:id="@+id/flash"
+                    android:id="@+id/flash_toggle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="14dp"
-                    android:src="@drawable/ic_flash"
-                    android:contentDescription="@string/next" />
+                    android:src="@drawable/ic_flash_off" />
 
             </RelativeLayout>
 
