@@ -1,6 +1,7 @@
 package org.tikitaka.s_cheduler;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -63,15 +64,12 @@ public class FinishActivity extends AppCompatActivity {
     private Button btnBack;
     private Button btnFinish;
     private ImageView imageView;
-    private TextView textView;
     private ImageButton btnClose,btnRotate, btnRetouch, btnCrop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish);
-
-        textView=(TextView)findViewById(R.id.textView);
 
         imageView = (ImageView) findViewById(R.id.imageView);
 
@@ -126,13 +124,16 @@ public class FinishActivity extends AppCompatActivity {
     }
 
     public void goBack(View v) {
-        Intent intent = new Intent(FinishActivity.this,AddActivity.class);
-        startActivity(intent);
+        finish();
 
     }
 
-    public void goForward() {
-
+    public void goForward(View v) {
+        Toast.makeText(getApplicationContext(),"일정 등록을 시작합니다",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(FinishActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
 

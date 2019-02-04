@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_close"
+                    android:src="@drawable/ic_back"
                     android:layout_alignParentStart="true"
                     android:contentDescription="@string/close" />
 
@@ -82,6 +82,67 @@
             android:gravity="center"
             android:background="#F6F6F6"/>
 
+        <FrameLayout
+            android:layout_width="252dp"
+            android:layout_height="353dp"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="46dp"
+            android:layout_marginBottom="46dp"
+            android:layout_weight="1"
+            android:layout_centerInParent="true"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="35dp"
+                android:layout_gravity="top|left"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="35dp"
+                android:layout_gravity="top|right"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom|left"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom|right"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="5dp"
+                android:layout_gravity="top|left"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="5dp"
+                android:layout_gravity="top|right"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="5dp"
+                android:layout_gravity="bottom|left"
+                android:background="@color/colorAccent" />
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="5dp"
+                android:layout_gravity="bottom|right"
+                android:background="@color/colorAccent" />
+
+        </FrameLayout>
+
         <RelativeLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
@@ -99,6 +160,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="70dp"
+                android:onClick="goBack"
                 android:text="재촬영" />
 
             <Button
@@ -108,19 +170,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="70dp"
+                android:onClick="goForward"
                 android:text="확인" />
 
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="152dp"
-            android:text="@string/textview" />
 
 
     </RelativeLayout>
