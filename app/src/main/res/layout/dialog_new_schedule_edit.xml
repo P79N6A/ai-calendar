@@ -42,7 +42,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/fullscreen_dialog_edit"
+                android:id="@+id/fullscreen_dialog_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="14dp"
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp"
-                android:text="편집"
+                android:text="저장"
                 android:textColor="@android:color/white" />
 
         </RelativeLayout>
@@ -76,8 +76,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@android:color/darker_gray" />
 
-            <TextView
-                android:id="@+id/titleLabel"
+            <EditText
+                android:id="@+id/titleInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -101,11 +101,11 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
                 android:src="@drawable/ic_map"
-                app:layout_constraintEnd_toEndOf="@+id/locationLabel"
-                app:layout_constraintBottom_toBottomOf="@+id/locationLabel" />
+                app:layout_constraintEnd_toEndOf="@+id/locationInput"
+                app:layout_constraintBottom_toBottomOf="@+id/locationInput" />
 
-            <TextView
-                android:id="@+id/locationLabel"
+            <EditText
+                android:id="@+id/locationInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -115,7 +115,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/titleInput" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -127,7 +127,7 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/locationInput" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -305,8 +305,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <TextView
-                android:id="@+id/emailLabel"
+            <EditText
+                android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -327,10 +327,10 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/emailInput" />
 
-            <TextView
-                android:id="@+id/urlLabel"
+            <EditText
+                android:id="@+id/urlInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -351,7 +351,7 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_url"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
-                app:layout_constraintEnd_toEndOf="@+id/emailLabel" />
+                app:layout_constraintEnd_toEndOf="@+id/emailInput" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -363,10 +363,10 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/urlLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/urlInput" />
 
-            <TextView
-                android:id="@+id/memoLabel"
+            <EditText
+                android:id="@+id/memoInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

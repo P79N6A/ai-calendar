@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.GradientDrawable;
@@ -79,7 +80,7 @@ public class AddActivity extends AppCompatActivity {
     private Button btnCapture;
     private Button btnGallery;
     private TextureView textureView;
-    Bitmap bitmap;
+    private Bitmap bitmap;
     private ImageButton btnClose, btnFlash;
 
     //check orientation of output image
@@ -124,8 +125,6 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePicture();
-                //Intent intent = new Intent(AddActivity.this,FinishActivity.class);
-                //startActivity(intent);
             }
         });
 
@@ -346,7 +345,14 @@ public class AddActivity extends AppCompatActivity {
                 public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(getApplicationContext(), "Saved" + file, Toast.LENGTH_SHORT).show();
-                    createCameraPreview();
+                    //createCameraPreview();
+                    Intent intent = new Intent();
+                    intent.setClass(AddActivity.this, FinishActivity.class);
+                    intent.putExtra("imagePath", file.toString());
+                    startActivity(intent);
+                    bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    detect();
+
                 }
             };
 
@@ -424,10 +430,13 @@ public class AddActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1&&resultCode==RESULT_OK){
             Uri uri=data.getData();
+            Intent intent = new Intent();
+            intent.setClass(AddActivity.this, FinishActivity.class);
+            intent.putExtra("imagePath", uri.toString());
+            startActivity(intent);
             try{
-                bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(),uri);
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),uri);
                 detect();
-                startActivity(new Intent(AddActivity.this,FinishActivity.class));
             }catch(IOException e) {
                 e.printStackTrace();
             }
