@@ -63,14 +63,14 @@ public class FullScreenDialog extends DialogFragment implements View.OnClickList
         String email=prefs.getString("My_Email","e-mail");
         String url=prefs.getString("My_URL","URL");
         String memo=prefs.getString("My_Memo","MEMO");
-        //int tel=prefs.getInt("My_TEL",0);
+        int tel=prefs.getInt("My_TEL",0);
 
         ((TextView) v.findViewById(R.id.titleLabel)).setText(title);
         ((TextView) v.findViewById(R.id.locationLabel)).setText(location);
         ((TextView) v.findViewById(R.id.emailLabel)).setText(email);
         ((TextView) v.findViewById(R.id.urlLabel)).setText(url);
         ((TextView) v.findViewById(R.id.memoLabel)).setText(memo);
-        //((TextView) v.findViewById(R.id.telLabel)).setText(tel+"");
+        ((TextView) v.findViewById(R.id.telLabel)).setText(tel+"");
 
         return v;
     }

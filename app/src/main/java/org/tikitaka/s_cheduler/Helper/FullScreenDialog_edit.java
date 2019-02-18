@@ -32,6 +32,7 @@ public class FullScreenDialog_edit extends DialogFragment implements View.OnClic
     private EditText emailInput;
     private EditText urlInput;
     private EditText memoInput;
+    private EditText telInput;
     private SharedPreferences prefs;
     private int day,month,year,hour,minute;
     private int day_x,month_x,year_x,hour_x,minute_x;
@@ -66,21 +67,21 @@ public class FullScreenDialog_edit extends DialogFragment implements View.OnClic
         String email=prefs.getString("My_Email","email@tikitaka.com");
         String url=prefs.getString("My_URL","https://tikitatka.com");
         String memo=prefs.getString("My_Memo","메모를 입력해주세요");
-        //int tel=prefs.getInt("My_TEL",0);
+        int tel=prefs.getInt("My_TEL",0);
 
         titleInput=(EditText) v.findViewById(R.id.titleInput);
         locationInput=(EditText) v.findViewById(R.id.locationInput);
         emailInput=(EditText) v.findViewById(R.id.emailInput);
         urlInput=(EditText) v.findViewById(R.id.urlInput);
         memoInput=(EditText) v.findViewById(R.id.memoInput);
-       //telInput=(EditText) v.findViewById(R.id.telInput);
+        telInput=(EditText) v.findViewById(R.id.telInput);
 
         titleInput.setText(title);
         locationInput.setText(location);
         emailInput.setText(email);
         urlInput.setText(url);
         memoInput.setText(memo);
-        //telImput.setText(tel+"");
+        telInput.setText(tel+"");
 
 
         Calendar c=Calendar.getInstance();
@@ -136,7 +137,7 @@ public class FullScreenDialog_edit extends DialogFragment implements View.OnClic
         String email=emailInput.getText().toString();
         String url=urlInput.getText().toString();
         String memo=memoInput.getText().toString();
-        //int tel=Integer.parseInt(telInput.getText().toString());
+        int tel=Integer.parseInt(telInput.getText().toString());
 
         SharedPreferences.Editor editor=prefs.edit();
         editor.putString("My_Title",title);
@@ -144,7 +145,7 @@ public class FullScreenDialog_edit extends DialogFragment implements View.OnClic
         editor.putString("MMy_Email",email);
         editor.putString("My_URL",url);
         editor.putString("My_Memo",memo);
-        //editor.putInt("My_TEL",tel);
+        editor.putInt("My_TEL",tel);
         editor.apply();
 
         DialogFragment dialog = FullScreenDialog.newInstance();

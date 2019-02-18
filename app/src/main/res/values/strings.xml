@@ -39,27 +39,28 @@
     <string name="event_name">Event Name</string>
     <string name="시작">시작</string>
     <string name="end_date">End date</string>
+    <string name="loading_message">Uploading image. Please wait.</string>
 
-    <string name="material_calendar_monday">월</string>
-    <string name="material_calendar_tuesday">화</string>
-    <string name="material_calendar_wednesday">수</string>
-    <string name="material_calendar_thursday">목</string>
-    <string name="material_calendar_friday">금</string>
-    <string name="material_calendar_saturday">토</string>
-    <string name="material_calendar_sunday">일</string>
+    <string name="material_calendar_monday">Mon</string>
+    <string name="material_calendar_tuesday">Tue</string>
+    <string name="material_calendar_wednesday">Wed</string>
+    <string name="material_calendar_thursday">Thu</string>
+    <string name="material_calendar_friday">Fri</string>
+    <string name="material_calendar_saturday">Sat</string>
+    <string name="material_calendar_sunday">Sun</string>
 
     <array name="material_calendar_months_array">
-        <item>"1"</item>
-        <item>"2"</item>
-        <item>"3"</item>
-        <item>"4"</item>
-        <item>"5"</item>
-        <item>"6"</item>
-        <item>"7"</item>
-        <item>"8"</item>
-        <item>"9"</item>
-        <item>"10"</item>
-        <item>"11"</item>
-        <item>"12"</item>
+        <item>"JAN"</item>
+        <item>"FEB"</item>
+        <item>"MAR"</item>
+        <item>"APR"</item>
+        <item>"MAY"</item>
+        <item>"JUN"</item>
+        <item>"JUL"</item>
+        <item>"AUG"</item>
+        <item>"SEP"</item>
+        <item>"OCT"</item>
+        <item>"NOV"</item>
+        <item>"DEC"</item>
     </array>
 </resources>
