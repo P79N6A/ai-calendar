@@ -12,12 +12,8 @@ import android.view.MenuItem;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.Toast;
-
-import com.applandeo.materialcalendarview.CalendarView;
-import com.applandeo.materialcalendarview.EventDay;
-import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
-import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import org.tikitaka.s_cheduler.Fragment.BoardFragment;
 import org.tikitaka.s_cheduler.Fragment.HomeFragment;
@@ -33,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String RESULT = "result";
     public static final String EVENT = "event";
     private static final int ADD_NOTE = 44;
-
-    private CalendarView mCalendarView;
-    private List<EventDay> mEventDays = new ArrayList<>();
 
     BottomNavigationView bottomNavigationView;
     Fragment selectedFragment = null;

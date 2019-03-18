@@ -76,7 +76,7 @@
                 android:background="#939393" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/main_image"
                 android:layout_width="match_parent"
                 android:layout_height="266dp"
                 android:background="#F4F4F4"
@@ -95,7 +95,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/main_image" />
 
 
             <TextView

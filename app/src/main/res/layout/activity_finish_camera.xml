@@ -75,11 +75,12 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/main_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="534dp"
             android:layout_above="@+id/linearLayout"
-            android:gravity="center" />
+            android:gravity="center"
+            android:scaleType="fitCenter" />
 
         <RelativeLayout
             android:id="@+id/linearLayout"
@@ -112,6 +113,12 @@
                 android:text="확인" />
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/image_details"
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:text="loading" />
 
 
     </RelativeLayout>

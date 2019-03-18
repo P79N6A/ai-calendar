@@ -63,11 +63,8 @@ import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.text.FirebaseVisionCloudTextRecognizerOptions;
-import com.google.firebase.ml.vision.text.FirebaseVisionText;
-import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+
+
 
 import org.tikitaka.s_cheduler.Helper.FullScreenDialog;
 
@@ -89,6 +86,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.net.ssl.ManagerFactoryParameters;
+
+
 
 public class AddActivity extends AppCompatActivity {
 
@@ -126,7 +125,7 @@ public class AddActivity extends AppCompatActivity {
     private static final int FLASH_STATE_ON = 1;
     private static final int FLASH_STATE_AUTO = 2;
 
-    private static final String CLOUD_VISION_API_KEY = "";
+
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -146,14 +145,15 @@ public class AddActivity extends AppCompatActivity {
                 takePicture();
             }
         });
-
         btnGallery = (Button) findViewById(R.id.btnGallery);
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickImage(v);
             }
-        });
+        }
+
+        );
 
 
         btnClose= (ImageButton)findViewById(R.id.close);
@@ -195,6 +195,7 @@ public class AddActivity extends AppCompatActivity {
         }
     };
 
+
     private void openCamera() {
         CameraManager manager=(CameraManager)getSystemService(Context.CAMERA_SERVICE);
         try{
@@ -217,6 +218,7 @@ public class AddActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
     private final CameraDevice.StateCallback stateCallBack=new CameraDevice.StateCallback() {
         @Override
@@ -373,7 +375,7 @@ public class AddActivity extends AppCompatActivity {
                     intent.setClass(AddActivity.this, FinishActivity.class);
                     intent.putExtra("imagePath", uri.toString());
                     startActivity(intent);
-                    detect();
+                    //detect();
                 }
             };
 
@@ -412,11 +414,10 @@ public class AddActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult (int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        if(requestCode==REQUEST_CAMERA_PERMISSION)
-        {
-            if(grantResults[0]!=PackageManager.PERMISSION_GRANTED)
-            {
-                Toast.makeText(this,"You can't use camera without permission.",Toast.LENGTH_SHORT).show();
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==REQUEST_CAMERA_PERMISSION) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "You can't use camera without permission.", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -459,80 +460,11 @@ public class AddActivity extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),uri);
 
                 // scale the image to 800px to save on bandwidth
-                callCloudVision(scaleBitmapDown(bitmap, 1200));
-
-                detect();
+                 // detect();
             }catch(IOException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void callCloudVision(final Bitmap bitmap) throws IOException {
-        // Switch text to loading
-
-        // Do the real work in an async task, because we need to use the network anyway
-        new AsyncTask<Object, Void, String>() {
-            @Override
-            protected String doInBackground(Object... params) {
-                try {
-                    HttpTransport httpTransport = AndroidHttp.newCompatibleTransport();
-                    JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
-
-                    Vision.Builder builder = new Vision.Builder(httpTransport, jsonFactory, null);
-                    builder.setVisionRequestInitializer(new
-                            VisionRequestInitializer(CLOUD_VISION_API_KEY));
-                    Vision vision = builder.build();
-
-                    BatchAnnotateImagesRequest batchAnnotateImagesRequest =
-                            new BatchAnnotateImagesRequest();
-                    batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
-                        AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
-
-                        // Add the image
-                        com.google.api.services.vision.v1.model.Image base64EncodedImage = new com.google.api.services.vision.v1.model.Image();
-                        // Convert the bitmap to a JPEG
-                        // Just in case it's a format that Android understands but Cloud Vision
-                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-                        byte[] imageBytes = byteArrayOutputStream.toByteArray();
-
-                        // Base64 encode the JPEG
-                        base64EncodedImage.encodeContent(imageBytes);
-                        annotateImageRequest.setImage(base64EncodedImage);
-
-                        // add the features we want
-                        annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
-                            Feature labelDetection = new Feature();
-                            labelDetection.setType("LABEL_DETECTION");
-                            labelDetection.setMaxResults(10);
-                            add(labelDetection);
-                        }});
-
-                        // Add the list of one thing to the request
-                        add(annotateImageRequest);
-                    }});
-
-                    Vision.Images.Annotate annotateRequest =
-                            vision.images().annotate(batchAnnotateImagesRequest);
-                    Log.d(TAG, "created Cloud Vision request object, sending request");
-
-                    BatchAnnotateImagesResponse response = annotateRequest.execute();
-                    return convertResponseToString(response);
-
-                } catch (GoogleJsonResponseException e) {
-                    Log.d(TAG, "failed to make API request because " + e.getContent());
-                } catch (IOException e) {
-                    Log.d(TAG, "failed to make API request because of other IOException " +
-                            e.getMessage());
-                }
-                return "Cloud Vision API request failed. Check logs for details.";
-            }
-
-            protected void onPostExecute(String result) {
-                Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
-            }
-        }.execute();
     }
 
     public Bitmap scaleBitmapDown(Bitmap bitmap, int maxDimension) {
@@ -555,61 +487,6 @@ public class AddActivity extends AppCompatActivity {
         return Bitmap.createScaledBitmap(bitmap, resizedWidth, resizedHeight, false);
     }
 
-    private String convertResponseToString(BatchAnnotateImagesResponse response) {
-        String message = "I found these things:\n\n";
-
-        List<EntityAnnotation> labels = response.getResponses().get(0).getLabelAnnotations();
-        if (labels != null) {
-            for (EntityAnnotation label : labels) {
-                message += label.getDescription();
-                message += "\n";
-            }
-        } else {
-            message += "nothing";
-        }
-
-        return message;
-    }
-
-    public void detect() {
-        if (bitmap == null) {
-            Toast.makeText(getApplicationContext(), "Bitmap is null", Toast.LENGTH_LONG).show();
-        } else {
-            final FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(bitmap);
-            FirebaseVisionTextRecognizer firebaseVisionTextRecognizer = FirebaseVision.getInstance().getCloudTextRecognizer();
-
-            // to provide language hints to assist with language detection:
-            FirebaseVisionCloudTextRecognizerOptions options = new FirebaseVisionCloudTextRecognizerOptions.Builder()
-                    .setLanguageHints(Arrays.asList("ko", "en"))
-                    .build();
-
-            firebaseVisionTextRecognizer.processImage(firebaseVisionImage)
-                    .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-                        @Override
-                        public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                            processText(firebaseVisionText);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(),"처리실패!",Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-    }
-
-    private void processText(FirebaseVisionText firebaseVisionText) {
-        List<FirebaseVisionText.TextBlock> blocks=firebaseVisionText.getTextBlocks();
-        if(blocks.size()==0){
-            Toast.makeText(getApplicationContext(),"No text detected",Toast.LENGTH_LONG).show();
-            return;
-        }else{
-            for(FirebaseVisionText.TextBlock block:firebaseVisionText.getTextBlocks()){
-                String text=block.getText();
-                //textView.setText(text);
-            }
-        }
-    }
 
     private void flash(){
         if(mFlashState == FLASH_STATE_OFF){
